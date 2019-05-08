@@ -22,7 +22,7 @@ export class AppComponent {
       let num2 = ipVar.indexOf("\"});");
       ipVar = ipVar.slice(num+2,num2);
       axios.post('http://localhost:8080/captcha', { ipAddress: ipVar}).then(function (response) {
-        this.captcha  = response.data.capatch;
+        this.captcha  = response.data.captcha;
       }).catch(function (error) {
         console.log(error);
       });
