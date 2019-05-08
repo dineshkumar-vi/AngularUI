@@ -21,8 +21,11 @@ export class AppComponent {
       let num = ipVar.indexOf(":");
       let num2 = ipVar.indexOf("\"});");
       ipVar = ipVar.slice(num+2,num2);
-      console.log(ipVar);
-      let captcha = axios.get('https://localhost:8080/captcha');
+      axios.post('http://localhost:8080/captcha', { ipAddress: ipVar}).then(function (response) {
+        this.captcha  = response.data.capatch;
+      }).catch(function (error) {
+        console.log(error);
+      });
     },  function(e) {
       alert("error");
    }); 
