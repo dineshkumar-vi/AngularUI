@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component , OnInit} from '@angular/core';
 import axios from 'axios';
 
 
@@ -7,15 +7,20 @@ import axios from 'axios';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
  
-  captcha: string;
+  captcha: string = null;
   userName: string;
   password: string;
   hasError: false;
   errorMessage : string;
 
   constructor(){
+   
+  }
+
+  ngOnInit() {
+    
     axios.get('http://api.ipify.org/?format=jsonp').then(function(result) {
       let ipVar = result.data;
       let num = ipVar.indexOf(":");
@@ -23,11 +28,7 @@ export class AppComponent {
       ipVar = ipVar.slice(num+2,num2);
       axios.post('http://localhost:8080/captcha', { ipAddress: ipVar}).then(function (response) {
         this.captcha  = response.data.captcha;
-      }).catch(function (error) {
-        console.log(error);
-      });
-    },  function(e) {
-      alert("error");
-   }); 
-  }
+      }.bind(this));
+    }.bind(this))
+ }
 }
