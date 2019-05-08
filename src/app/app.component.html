@@ -1,0 +1,25 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Welcome to the demo!
+  </h1>
+</div>
+<h2>Login with Captcha </h2>
+<ul>
+  <li>
+    <h2>UserName : <input type="text" name="userName" /></h2>
+  </li>
+  <li>
+    <h2>Password : <input type="password" name="password" /></h2>
+  </li>
+  <li>
+    <h2> Captcha: <label id="captchLabel" ></label> </h2>
+    <h2>Enter Captcha : <input type="text" name="captcha" /> <input type="button" id="validateCaptcha" value="Validate" onclick="validateCaptch()"/> </h2>
+  </li>
+
+  <li>
+      <h2><input type="button" id="checkLogin" value="Check Login" onclick="checkLogin()"/> </h2>
+    </li>
+</ul>
+
+<router-outlet></router-outlet>
