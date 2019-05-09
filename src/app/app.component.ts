@@ -57,7 +57,15 @@ export class AppComponent implements OnInit {
         this.successMessage = "User validated successfully!"
     }.bind(this)).catch(function(error){
       this.hasError = true;
-      this.errorMessage = error;
+      if (error.response) {
+        this.errorMessage = error.response.data;
+      } else if (error.request) {
+        console.log(error.request);
+      } else {
+        this.errorMessage = error.message;
+      }
+      
+      
       this.successMessage = null;
     }.bind(this));
   }
