@@ -1,25 +1,49 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to the demo!
-  </h1>
-</div>
-<h2>Login with Captcha </h2>
-<ul>
-  <li>
-    <h2>UserName : <input type="text" name="userName" /></h2>
-  </li>
-  <li>
-    <h2>Password : <input type="password" name="password" /></h2>
-  </li>
-  <li>
-    <h2> Captcha: <label id="captchLabel">  {{ captcha }}</label> </h2>
-    <h2>Enter Captcha : <input type="text" name="captcha" /> <input type="button" id="validateCaptcha" value="Validate" onclick="validateCaptch()"/> </h2>
-  </li>
+<div>
+  <form class="form-signin" (submit)="submit()">
 
-  <li>
-      <h2><input type="button" id="checkLogin" value="Check Login" onclick="checkLogin()"/> </h2>
-    </li>
-</ul>
+    <div class="text-center mb-4">
+      <h1 class="h3 mb-3 font-weight-normal">Captcha Demo</h1>
+      <p> Refreshable Captcha with login </p>
+    </div>
+
+    <div class="mb-4">
+      <div *ngIf="hasError">
+            <div class="text-center errorMessage"><strong>{{errorMessage}}</strong></div>
+      </div>
+    </div>
+
+    <div class="mb-4">
+    <div *ngIf="successMessage">
+        <div class="text-center sucessMessage"><strong>{{successMessage}}</strong></div>
+    </div>
+</div>
+
+  
+    <div class="form-label-group">
+      <input type="text" id="userName" name="userName" [(ngModel)]="loginModel.userName" class="form-control" placeholder="UserName" required autofocus>
+      <label for="userName">UserName</label>
+    </div>
+  
+    <div class="form-label-group">
+      <input type="password" id="password" name="password" [(ngModel)]="loginModel.password" class="form-control" placeholder="Password" required>
+      <label for="password">Password</label>
+    </div>
+
+    <div class="capbox d-flex flex-row">
+      <div class="p-2 captcha">{{ captcha  }}</div>
+      <div class="p-2"><img src="../assets/refresh.png" (click)="refreshCaptcha()" width="30px" /></div>
+      <div class="p-2">Enter Captcha :</div>
+      <div class="p-2"><input type="text" name="CaptchaInput" [(ngModel)]="loginModel.captcha" id="CaptchaInput" size="15"></div>
+    </div>
+
+  
+    <div class="checkbox mb-3">
+    
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+    <p class="mt-5 mb-3 text-muted text-center">&copy; 2017-2019</p>
+  </form>
+</div>
 
 <router-outlet></router-outlet>
