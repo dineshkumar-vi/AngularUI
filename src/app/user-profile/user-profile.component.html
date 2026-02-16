@@ -1,0 +1,87 @@
+<div class="user-profile-container">
+  <h2>User Profile</h2>
+
+  <div *ngIf="isLoading" class="loading-spinner">
+    <p>Loading...</p>
+  </div>
+
+  <div *ngIf="errorMessage" class="error-message">
+    <p>{{ errorMessage }}</p>
+  </div>
+
+  <div *ngIf="successMessage" class="success-message">
+    <p>{{ successMessage }}</p>
+  </div>
+
+  <div *ngIf="userProfile && !isLoading" class="profile-content">
+    <div *ngIf="!isEditMode" class="profile-view">
+      <div class="profile-field">
+        <label>Username:</label>
+        <span>{{ userProfile.userName }}</span>
+      </div>
+      <div class="profile-field">
+        <label>Email:</label>
+        <span>{{ userProfile.email }}</span>
+      </div>
+      <div class="profile-field">
+        <label>First Name:</label>
+        <span>{{ userProfile.firstName }}</span>
+      </div>
+      <div class="profile-field">
+        <label>Last Name:</label>
+        <span>{{ userProfile.lastName }}</span>
+      </div>
+      <div class="profile-field">
+        <label>Member Since:</label>
+        <span>{{ userProfile.createdAt | date:'medium' }}</span>
+      </div>
+
+      <div class="button-group">
+        <button class="btn btn-primary" (click)="toggleEditMode()">Edit Profile</button>
+        <button class="btn btn-danger" (click)="deleteProfile()">Delete Profile</button>
+      </div>
+    </div>
+
+    <div *ngIf="isEditMode" class="profile-edit">
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input
+          id="email"
+          type="email"
+          [(ngModel)]="editForm.email"
+          class="form-control"
+          placeholder="Enter email"
+        />
+      </div>
+      <div class="form-group">
+        <label for="firstName">First Name:</label>
+        <input
+          id="firstName"
+          type="text"
+          [(ngModel)]="editForm.firstName"
+          class="form-control"
+          placeholder="Enter first name"
+        />
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name:</label>
+        <input
+          id="lastName"
+          type="text"
+          [(ngModel)]="editForm.lastName"
+          class="form-control"
+          placeholder="Enter last name"
+        />
+      </div>
+
+      <div class="button-group">
+        <button class="btn btn-success" (click)="saveProfile()">Save Changes</button>
+        <button class="btn btn-secondary" (click)="toggleEditMode()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!userProfile && !isLoading && !errorMessage" class="no-profile">
+    <p>No user profile found. Please log in.</p>
+  </div>
+</div>
