@@ -25,8 +25,8 @@ describe('UserProfileService', () => {
     it('should fetch user profile successfully', (done) => {
       const mockProfile: UserProfile = {
         id: '123',
-        userName: 'testuser',
-        email: 'test@example.com',
+        userName: 'DineshV',
+        email: 'dinesh@example.com',
         firstName: 'Test',
         lastName: 'User',
         createdAt: new Date('2024-01-01')
